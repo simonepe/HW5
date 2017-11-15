@@ -26,13 +26,13 @@ package Client.View;
 /**
  * This class provides a thread safe output, all methods are synchronized. 
  */
-class ThreadSafeStdOut {
+class StdOut {
     /**
      * Prints the specified output to <code>System.out</code>,
      * 
      * @param output The output to print. 
      */
-    synchronized void print(String output) {
+    public void print(String output) {
         System.out.print(output);
     }
 
@@ -41,7 +41,7 @@ class ThreadSafeStdOut {
      * 
      * @param output The output to print. 
      */
-    synchronized void println(String output) {
+    public void println(String output) {
         System.out.println(output);
     }
 }
