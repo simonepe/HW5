@@ -5,7 +5,6 @@ import Client.Net.ServerConnection;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.util.concurrent.CompletableFuture;
 
 
 public class Controller {

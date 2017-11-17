@@ -8,7 +8,6 @@ public class Interpreter implements Runnable{
 
     private final Scanner console = new Scanner(System.in);
     private boolean startGame = false;
-    //private final SynchronizedStdOut outMgr = new SynchronizedStdOut();
     private Controller contr;
 
     public Interpreter(Controller contr){
