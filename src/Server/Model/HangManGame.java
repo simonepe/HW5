@@ -26,9 +26,7 @@ public class HangManGame {
         this.contr = contr;
         remainingGuesses = word.length();
         wordLetters = word.split("");
-        start();
-
-      
+        start();   
     }
 
     public String start(){
@@ -55,10 +53,8 @@ public class HangManGame {
             if (guess.equals(word)) {
                                        
                 return won();
-
             }
-            else {
-                                        
+            else {                               
                 return lost();
             }
         }

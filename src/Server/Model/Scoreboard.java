@@ -2,9 +2,6 @@ package Server.Model;
 
 import Server.Controller.Controller;
 
-/**
- * Created by camillasvartsjo on 2017-11-09.
- */
 public class Scoreboard {
     
     public HangManGame currentGame;

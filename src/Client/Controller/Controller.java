@@ -12,14 +12,11 @@ public class Controller {
     private final ServerConnection serverConnection = new ServerConnection();
     
     public void connect(String host, int port, OutputHandler outputHandler) {
-
-        CompletableFuture.runAsync(() -> {
-            try { 
-                serverConnection.connect(host, port, outputHandler);
+        try { 
+            serverConnection.connect(host, port, outputHandler);
             } catch (IOException ioe) {
                 throw new UncheckedIOException(ioe);
-            }
-        }).thenRun(() -> outputHandler.handleMsg("Connected to host: " + host + " and port: " + port));   
+            }   
     }
 
 
@@ -28,7 +25,7 @@ public class Controller {
     }
 
     public void guess(String guess) {
-        CompletableFuture.runAsync(() -> serverConnection.makeGuess(guess));
+        serverConnection.makeGuess(guess);
     }
 
 

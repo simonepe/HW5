@@ -1,19 +1,14 @@
 package Server.Net;
 
 import Server.Controller.Controller;
-import Server.Model.Scoreboard;
 import Server.Model.WordHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by camillasvartsjo on 2017-11-09.
- */
 public class Server {
     private final Controller contr = new Controller();
     public final WordHandler wordHandler = new WordHandler();
@@ -24,7 +19,6 @@ public class Server {
 
     public static void main(String[] args) {
         Server server = new Server();
-        server.parseArguments(args);
         server.serve();
     }
 
@@ -50,8 +44,6 @@ public class Server {
 
 
     private void startHandler(Socket clientSocket) throws Exception {
-        clientSocket.setSoLinger(true, LINGER_TIME);
-        clientSocket.setSoTimeout(TIMEOUT_HALF_HOUR);
         ClientHandler handler = new ClientHandler(this, clientSocket);
         synchronized (clients) {
             clients.add(handler);
@@ -60,18 +52,6 @@ public class Server {
         handlerThread.setPriority(Thread.MAX_PRIORITY);
         handlerThread.start();
     }
-
-    private void parseArguments(String[] arguments) {
-        if (arguments.length > 0) {
-            try {
-                portNo = Integer.parseInt(arguments[1]);
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid port number, using default.");
-            }
-        }
-    }
-
-
 
     public void newGame(ClientHandler client) throws Exception {
         String msg = contr.newGame(client.scoreboard, wordHandler, contr, client, this);

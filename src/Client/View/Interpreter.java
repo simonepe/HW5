@@ -8,7 +8,7 @@ public class Interpreter implements Runnable{
 
     private final Scanner console = new Scanner(System.in);
     private boolean startGame = false;
-    private final StdOut outMgr = new StdOut();
+    //private final SynchronizedStdOut outMgr = new SynchronizedStdOut();
     private Controller contr;
 
     public Interpreter(Controller contr){
@@ -27,8 +27,8 @@ public class Interpreter implements Runnable{
     public void run() {
         while (startGame) {
             try {
-                CmdLine cmdLine = new CmdLine(readNextLine());
-                switch (cmdLine.getUserInput().toUpperCase()) {
+                String msg = new String(readNextLine());
+                switch (msg.toUpperCase()) {
                     case "QUIT":
                         startGame = false;
                         contr.disconnect();
@@ -42,11 +42,10 @@ public class Interpreter implements Runnable{
                         contr.newGame();
                         break;
                     default:
-                        contr.guess(cmdLine.getUserInput());
-                        
+                        contr.guess(msg);
                 }
             } catch (Exception e) {
-                outMgr.println("Operation failed");
+                System.out.println("Operation failed");
             }
         }
     }
@@ -58,7 +57,7 @@ public class Interpreter implements Runnable{
     private class ConsoleOutput implements OutputHandler {
         @Override
         public void handleMsg(String msg) {
-            outMgr.println(msg);
+            System.out.println(msg);
         }
     }
 
