@@ -6,6 +6,7 @@ import Server.Model.Scoreboard;
 import Server.Model.WordHandler;
 import Server.Net.Server;
 import Server.Net.ClientHandler;
+import java.io.IOException;
 
 
 public class Controller {
@@ -16,16 +17,17 @@ public class Controller {
     public Controller(){
     }
 
-    public String newGame(Scoreboard scoreboard, WordHandler wh, Controller contr, 
+    public String newGame(Scoreboard scoreboard, WordHandler wh, 
                           ClientHandler client, Server server ) throws Exception {
         this.scoreboard = scoreboard;
         this.client = client;
         this.server = server;
-        return scoreboard.newGame(wh, this);
+        return scoreboard.newGame(wh);
     }
 
 
-    public String guess(String guess, HangManGame currentGame) {
+
+    public String guess(String guess, HangManGame currentGame) throws IOException {
         return currentGame.guess(guess);
     }
     

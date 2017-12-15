@@ -44,6 +44,7 @@ public class ClientHandler implements Runnable {
         while (connected) {
             try {
                 String s = fromClient.nextLine();
+                System.out.println("SERVER GOT: " + s);
                 
                 inputType msg = new inputType(s);
                 switch (msg.commandType) {
@@ -70,6 +71,7 @@ public class ClientHandler implements Runnable {
     }
 
     void sendMsg(String msg) {
+        System.out.println("MSG SENT: " + msg);
         toClient.println(msg);
     }
 

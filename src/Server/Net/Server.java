@@ -18,6 +18,7 @@ public class Server {
     private int portNo = 3333;
 
     public static void main(String[] args) {
+        System.out.println("SERVER RUNNING");
         Server server = new Server();
         server.serve();
     }
@@ -54,12 +55,10 @@ public class Server {
     }
 
     public void newGame(ClientHandler client) throws Exception {
-        String msg = contr.newGame(client.scoreboard, wordHandler, contr, client, this);
+        String msg = contr.newGame(client.scoreboard, wordHandler, client, this);
         client.sendMsg(msg);
-
-
     }
-    public void guess(String guess, ClientHandler client) {
+    public void guess(String guess, ClientHandler client) throws IOException {
         String msg = contr.guess(guess, client.scoreboard.currentGame);
         client.sendMsg(msg);
         
@@ -68,5 +67,6 @@ public class Server {
     public void newScore(ClientHandler client, String msg) {
         client.sendMsg(msg);
     }
+    
 
 }
